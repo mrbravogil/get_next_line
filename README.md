@@ -1,14 +1,4 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    README.md                                          :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#   By: mabravo- <mabravo-@student.42malaga.com>   +#+  +:+       +#+          #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/12/15 13:58:07 by mabravo-          #+#    #+#              #
-#    Updated: 2025/12/15 13:58:10 by mabravo-         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+
 
 # get_next_line
 Proyecto llevado a cabo durante el Cursus de Campus 42, Málaga. Recreación 
