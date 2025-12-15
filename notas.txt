@@ -1,0 +1,12 @@
+EJEMPLOS
+
+#include <stdlib.h>
+#define BUFFER_SIZE 1024
+char *buffer = (char *)malloc(BUFFER_SIZE * sizeof(char));
+if (buffer == NULL) {
+    perror("Error al asignar memoria");
+    exit(1);
+}
+// ... usar el buffer ...
+free(buffer); // Liberar memoria
+
