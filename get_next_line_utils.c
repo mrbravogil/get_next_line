@@ -32,7 +32,10 @@ char	*ft_strchr(const char *s, int c)
 	while (s[i])
 	{
 		if (s[i] == d)
+		{
+			i++;
 			return ((char *)&s[i]);
+		}
 		i++;
 	}
 	if (s[i] == d)
