@@ -10,3 +10,35 @@ if (buffer == NULL) {
 // ... usar el buffer ...
 free(buffer); // Liberar memoria
 
+la funcion get next line
+
+crea las variables left line, buffer y final line
+genera memoria para buffer
+controla que tanto buffer size, fd, read y buffer existan
+dsps rellena line con la funcion fill_line
+libera el buffer y lo hace nullo
+comprueba line 
+rellena left line con set line
+y devuelve line
+
+la funcion fill line
+
+tiene un contador para read que se inicializa en 1 
+y un string temp
+mientras count > 0
+    - count es igual a read
+    - si count es -1 se libera left-c y devuelve nulo
+    - si count == 0, devuelve null y break
+    - buffer[count] = 0; termina el string en nullo
+    - si left-c no esta inicializada hacerlo con strdup y ""
+    - tmp = left-c
+    - left_c = ft_strjoin(tmp, buffer);
+    - liberar tmp y hacerlo nulo
+    - encontrar \n en buffer con strchr y hacer break
+devolver left_c
+
+la funcion set line
+
+itera dentro del buffer buscando el salto de linea
+una vez lo encuentra copia desde i+1 hasta ftstrlen buff - i en left_line
+para guardar el contenido de lo que queda del archivo fd 
