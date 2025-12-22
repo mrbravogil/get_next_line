@@ -12,10 +12,13 @@
 
 #include "get_next_line.h"
 
-void	ft_free(char *ptr)
+void    ft_free(char **ptr)
 {
-	free(ptr);
-	ptr = NULL;
+    if (ptr && *ptr)
+    {
+        free(*ptr);
+        *ptr = NULL;
+    }
 }
 
 char	*fill_line(int fd, char *src, char *buffer)
@@ -27,13 +30,6 @@ char	*fill_line(int fd, char *src, char *buffer)
 	while (count > 0)
 	{
 		count = read(fd, buffer, BUFFER_SIZE);
-		if (count == -1)
-		{
-			ft_free(src);
-			return (NULL);
-		}
-		if (count == 0)
-			break ;
 		buffer[count] = '\0';
 		if (!src)
 			src = ft_strdup("");
@@ -46,28 +42,30 @@ char	*fill_line(int fd, char *src, char *buffer)
 	return(src);
 }
 
-char	*left_line(char **dst)
+char	*left_line(char **src)
 {
 	char 	*left;
 	char	*line;
 	int		i;
 	
 	i = 0;
-	if (!dst || !*dst)
+	if (!src || !*src)
 		return (NULL);
-	while ((*dst)[i] != '\n' && (*dst)[i] != '\0')
+	while ((*src)[i] != '\n' && (*src)[i] != '\0')
 		i++;
-	if ((*dst)[i] == '\n' )
+	if ((*src)[i] == '\n' )
 	{
-		line = ft_substr(*dst, 0, i + 1);
-		left = ft_substr(*dst, i + 1, (ft_strlen(*dst) - (i + 1)));
-		*dst = left;
-		if (*dst && (*dst)[0] == '\0')
-			ft_free(*dst);
+		line = ft_substr(*src, 0, i + 1);
+		left = ft_substr(*src, i + 1, (ft_strlen(*src) - (i + 1)));
+		if(!left || left[0] == '\0')
+			free(left);
+		*src = left;
+		if (!*src || (*src)[0] == '\0')
+			*src = NULL;
 		return (line);
 	}
-	line = ft_strdup(*dst);
-	ft_free(*dst);
+	line = ft_strdup(*src);
+	ft_free(src);
 	return(line);
 }
 
@@ -80,8 +78,8 @@ char	*get_next_line(int fd)
 	buf = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (fd == -1 || BUFFER_SIZE == 0 || read( fd, 0, 0) < 0)
 	{	
-		ft_free(src);
-        ft_free(buf);
+		ft_free(&src);
+        ft_free(&buf);
         return (NULL);
 	}
 	if (!buf)
@@ -89,7 +87,7 @@ char	*get_next_line(int fd)
 	src = fill_line(fd, src, buf);
 	if (!src)
 		return (NULL);
-	ft_free(buf);
+	ft_free(&buf);
 	line = left_line(&src);
 	return (line);
 }

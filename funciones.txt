@@ -13,4 +13,80 @@ caracter a caracter. devolviendo finalmente s2.
 
 ft_substr()
     se copia un string en un segundo string desde el indice indicado,
-start, hasta el len especificado. 
+start, hasta el len especificado. se comprueban los siguientes casos:
+    - si start es mayor a len, s2 se rellena con "". cadena vacia.
+    - si len es mayor a ft_strlen(s + start), 
+    entonces len = ft_strlen(s + start).
+    - se crea espacio de memoria para s2
+    - se copia s a s2 desde start + i.
+
+ft_strjoin()
+    recibe dos string y devuelve las dos cadena unidas en un tercer
+string.
+
+ft_free()
+    recibe un puntero, lo libera y lo hace igual a nullo.
+    pon a NULL cuando:
+    - el puntero vive más allá del scope actual
+    - o puede volver a usarse
+    - o es static / global
+    - o es accesible desde fuera (doble puntero)
+    no es necesario cuando:
+    - el puntero es local
+    - no se vuelve a usar
+    - la función termina justo después
+
+fill_line()
+    recibe un *string, su formato de documento (fd) y un *buffer.
+lee lo que hay dentro de fb y lo copia dentro del buffer, compiando
+el numero de bytes especificados en BUFFER_SIZE. y devuelve la cadena
+con el contenido de fd.
+    - se crean una variable *tmp y count = 1.
+    - mientras count > 0, count = read(fd, buffer, BUFFER_SIZE).
+    - dentro del bucle se almacenan los valores en buffer y se termina
+    con '\0'.
+    - se comprueba que exista src, sino se rellena con ft_strup("").
+    - tmp = src y src = ft_strjoin(tmp, buffer).
+    - se comprueba que exista src sino se devuelve NULL.
+    - se libera tmp y se devuelve src.
+
+left_line()
+    recibe un doble puntero y devuelve un string(linea).
+por que usar un doble puntero:
+    - si left_line recibiera solo char *src, 
+src = left; // SOLO cambia la copia local. src no se actualizaría 
+en get_next_line. Por eso es obligatorio el doble puntero.
+    - !src: me han pasado un puntero valido.
+    - !*src: apunta a algo.
+    - (*src)[i]: accede al caracter del string. 
+funcionamiento de left_line:
+    - se crean dos variables, line y left.
+    - comprueba que src tenga el contenido correcto
+    - mientras (*src)[i] no sea salto de linea ni nulo i++.
+    - si (*src)[i] == salto de linea
+        - line = ft_substr(*src, 0, i + 1);
+        - left = ft_substr(*src, i + 1, (ft_strlen(*src) - (i + 1)));
+        - src = left, si src 0 es igual a nulo se libera src y se 
+        devuelve line.
+    - si no hay salto de linea, line = ft_strdup(*src); se libera
+    src y se devuelve line.
+
+get_next_line()
+    recibe el file descriptor (fd), lugar donde se almacena un archivo.
+lee el archivo y devuelve una linea del texto. lee el texto, busca
+un salto de linea y devuelve la linea. guardando el indice de manera
+estatica para cuando se llama a la funcion otra vez devolver la siguiente
+linea.
+    funcionamiento:
+    - se crea una variable static *src, una variable estatica guarda 
+    el valor de la ultima vez que se le llamo.
+    - se crean dos variables mas *buf y *line.
+    - se crea espacio para buf.
+    - se comprueban los valores de fd, 
+    BUFFER_SIZE y read. si estos son negativos o 0 se libera src y
+    buf, se igualan a nulo y se devuelve NULL.
+    - se comprueba buf
+    - src = fill_line(fd, src, buf);
+    - se comprueba src y se libera buff, igualando a nulo.
+    - se rellena line = left_line(&src); y se devuelve line
+    

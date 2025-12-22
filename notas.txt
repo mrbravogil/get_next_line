@@ -44,3 +44,5 @@ la funcion set line
 itera dentro del buffer buscando el salto de linea
 una vez lo encuentra copia desde i+1 hasta ftstrlen buff - i en left_line
 para guardar el contenido de lo que queda del archivo fd 
+
+aprender valgrind

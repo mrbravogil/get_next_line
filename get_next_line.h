@@ -23,14 +23,13 @@
 # include <fcntl.h>
 
 size_t	ft_strlen(const char *s);
-void    ft_free(char *ptr);
-char	*ft_strchr(const char *s, int c);
+void    ft_free(char **ptr);
 char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
-char *left_line(char **dst);
-char *fill_line(int fd, char *src, char *buffer);
-char *get_next_line(int fd);
+char    *left_line(char **src);
+char    *fill_line(int fd, char *src, char *buffer);
+char    *get_next_line(int fd);
 
 #endif
