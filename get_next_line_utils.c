@@ -64,15 +64,13 @@ char	*ft_strdup(const char *s)
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	size;
 	size_t	i;
 	char	*s2;
 
 	i = 0;
 	if (!s)
 		return (0);
-	size = ft_strlen(s);
-	if (start > size)
+	if (start > len)
 		return (ft_strdup(""));
 	if (len > ft_strlen(s + start))
 		len = ft_strlen(s + start);

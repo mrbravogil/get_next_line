@@ -71,7 +71,7 @@ char	*left_line(char **dst)
 	return(line);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	static char *src;
 	char 		*buf;

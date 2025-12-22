@@ -1,0 +1,16 @@
+ft_strlen()
+    cuenta los chars dentro de un string
+
+ft_strchr()
+    devuelve la primera aparicion de un char en un string y 
+el resto del string, (char *)&s[i], si no encuentra el char
+la funcion devuelve cero.
+
+ft_strdup()
+    recibe un string y almacena una copia en un segundo string. 
+la creacion de memoria para s2 se hace con malloc y dsps se copia
+caracter a caracter. devolviendo finalmente s2.
+
+ft_substr()
+    se copia un string en un segundo string desde el indice indicado,
+start, hasta el len especificado. 

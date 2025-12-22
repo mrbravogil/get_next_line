@@ -10,6 +10,8 @@ if (buffer == NULL) {
 // ... usar el buffer ...
 free(buffer); // Liberar memoria
 
+https://medium.com/@lannur-s/gnl-c3cff1ee552b
+
 la funcion get next line
 
 crea las variables left line, buffer y final line
