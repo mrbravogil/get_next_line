@@ -70,7 +70,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	i = 0;
 	if (!s)
 		return (0);
-	if (start > len)
+	if (start > (unsigned int)ft_strlen(s))
 		return (ft_strdup(""));
 	if (len > ft_strlen(s + start))
 		len = ft_strlen(s + start);
@@ -89,23 +89,23 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*s3;
-	int		j;
-	int 	total;
+	size_t	j;
+	size_t	i;
+	size_t	total;
 
 	j = 0;
+	i = 0;
 	if (!s1 || !s2)
 		return (0);
 	total = ft_strlen(s1) + ft_strlen(s2) + 1;
 	s3 = (char *)malloc(total * sizeof(char));
 	if (!s3)
 		return (0);
-	while (*s1)
-		s3[j++] = *s1++;
-	while (*s2)
-		s3[j++] = *s2++;
+	while (s1[i])
+		s3[j++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		s3[j++] = s2[i++];
 	s3[j] = '\0';
 	return (s3);
 }
-
-
-

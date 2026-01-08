@@ -1,6 +1,7 @@
-hola
-como 
-estas
-macarrones
-para
-comer...
+Al hacer el proyecto, es importante:
+1) Tanto el tamaño del buffer como el de la línea pueden tener
+valores muy diferentes.
+2) Un descriptor de archivo no solo apunta a archivos normales.
+Alguien inteligente compraría y verificaría los ejercicios con otras
+personas. Es más: prepararía una lotería de pruebas de cara a la
+evaluación.
