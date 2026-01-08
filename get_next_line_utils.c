@@ -70,6 +70,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	i = 0;
 	if (!s)
 		return (0);
+	// comparar con ft_strlen en vez de len
 	if (start > (unsigned int)ft_strlen(s))
 		return (ft_strdup(""));
 	if (len > ft_strlen(s + start))
@@ -90,6 +91,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*s3;
 	size_t	j;
+	// añadir variable i
 	size_t	i;
 	size_t	total;
 
@@ -103,6 +105,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (0);
 	while (s1[i])
 		s3[j++] = s1[i++];
+	reinicializar variable
 	i = 0;
 	while (s2[i])
 		s3[j++] = s2[i++];

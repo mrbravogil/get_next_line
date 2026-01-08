@@ -5,27 +5,14 @@ int main()
 	int fd;
 	char *line;
 	fd = open("text.txt", O_RDONLY);
+	// creacion de un bucle para recorrer todo el texto
 	line = get_next_line(fd);
-	printf("Esta es la primera linea: %s", line);
-	free(line);
-	line = get_next_line(fd);
-	printf("Esta es la segunda linea: %s", line);
-	free(line);
-	line = get_next_line(fd);
-	printf("Esta es la tercera linea: %s", line);
-	free(line);
-	line = get_next_line(fd);
-	printf("Esta es la cuarta linea: %s", line);
-	free(line);
-	line = get_next_line(fd);
-	printf("Esta es la quinta linea: %s", line);
-	free(line);
-	line = get_next_line(fd);
-	printf("Esta es la sexta linea: %s", line);
-	free(line);
-	line = get_next_line(fd);
-	printf("Esta es la septima linea: %s", line);
-	free(line);
+	while (line != NULL)
+	{
+		printf("%s", line);
+		free(line);
+		line = get_next_line(fd);
+	}
 	close(fd);
 	return (0);
 }

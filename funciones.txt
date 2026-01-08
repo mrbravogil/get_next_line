@@ -14,7 +14,7 @@ caracter a caracter. devolviendo finalmente s2.
 ft_substr()
     se copia un string en un segundo string desde el indice indicado,
 start, hasta el len especificado. se comprueban los siguientes casos:
-    - si start es mayor a len, s2 se rellena con "". cadena vacia.
+    - si start es mayor a ft_strlen(src), s2 se rellena con "". cadena vacia.
     - si len es mayor a ft_strlen(s + start), 
     entonces len = ft_strlen(s + start).
     - se crea espacio de memoria para s2
@@ -42,7 +42,7 @@ lee lo que hay dentro de fb y lo copia dentro del buffer, compiando
 el numero de bytes especificados en BUFFER_SIZE. y devuelve la cadena
 con el contenido de fd.
     - se crean una variable *tmp y count = 1.
-    - mientras count > 0, count = read(fd, buffer, BUFFER_SIZE).
+    - mientras count >= 0, count = read(fd, buffer, BUFFER_SIZE). sino break
     - dentro del bucle se almacenan los valores en buffer y se termina
     con '\0'.
     - se comprueba que exista src, sino se rellena con ft_strup("").
@@ -64,6 +64,7 @@ funcionamiento de left_line:
     - comprueba que src tenga el contenido correcto
     - mientras (*src)[i] no sea salto de linea ni nulo i++.
     - si (*src)[i] == salto de linea
+    	se llama a la funcion check_loop
         - line = ft_substr(*src, 0, i + 1);
         - left = ft_substr(*src, i + 1, (ft_strlen(*src) - (i + 1)));
         - src = left, si src 0 es igual a nulo se libera src y se 

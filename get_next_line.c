@@ -46,7 +46,7 @@ char	*fill_line(int fd, char *src, char *buffer)
 	}
 	return (src);
 }
-
+// creacion de nueva funcion para dividir left_line
 char	*check_loop(char **src, int i)
 {
 	char	*left;
@@ -55,6 +55,7 @@ char	*check_loop(char **src, int i)
 	line = ft_substr(*src, 0, i + 1);
 	left = ft_substr(*src, i + 1, (ft_strlen(*src) - (i + 1)));
 	free(*src);
+	// el caso de !left, este se debe liberar y src = NULL
 	if (!left || left[0] == '\0')
 	{
 		free(left);
@@ -101,6 +102,7 @@ char	*get_next_line(int fd)
 	if (!buf)
 		return (NULL);
 	src = fill_line(fd, src, buf);
+	// si !src liberar buf
 	if (!src)
 	{
 		free(buf);
