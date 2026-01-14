@@ -110,7 +110,6 @@ char	*get_next_line(int fd)
 		ft_free(&src);
 		return (NULL);
 	}
-	
 	line = left_line(&src);
 	return (line);
 }
