@@ -95,7 +95,7 @@ char	*get_next_line(int fd)
 	char		*buf;
 	char		*line;
 
-	if (fd == -1 || BUFFER_SIZE == 0 || read(fd, 0, 0) < 0)
+	if (fd == -1 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
 		ft_free(&src);
 		return (NULL);
