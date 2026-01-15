@@ -147,7 +147,31 @@ Orchestrates the entire process:
 
 ## Instructions
 
-This project does not generate a library. Compile your program together with the required source files:
+This project does not generate a library. The following `main.c` is an example of how you can use this project:
 
+```
+#include "get_next_line.h"
+
+int main()
+{
+	int fd;
+	char *line;
+	int i = 1;
+	fd = open("text.txt", O_RDONLY);
+	// creacion de un bucle para recorrer todo el texto
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		printf("%d. Linea: %s", i,line);
+		free(line);
+		line = get_next_line(fd);
+		i++;
+	}
+	close(fd);
+	return (0);
+}
+```
+Compile with the following command:
 ```bash
-gcc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c
+cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 main.c get_next_line.c get_next_line_utils.c
+```
