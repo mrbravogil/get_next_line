@@ -30,9 +30,9 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
-char	*check_loop(char **src, int i);
-char	*left_line(char **src);
-char	*fill_line(int fd, char *src, char *buffer);
+char	*store_line(char **src, int i);
+char	*create_line(char **src);
+char	*read_file(int fd, char *src, char *buffer);
 char	*get_next_line(int fd);
 
 #endif

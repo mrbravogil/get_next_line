@@ -21,16 +21,21 @@ void	ft_free(char **ptr)
 	}
 }
 
-char	*fill_line(int fd, char *src, char *buffer)
+char	*read_file(int fd, char *src, char *buffer)
 {
 	char		*tmp;
 	ssize_t		count;
 
 	count = 1;
-	while (count > 0 && (!src || !ft_strchr(src, '\n')))
+	while (count >= 0 && (!src || !ft_strchr(src, '\n')))
 	{
 		count = read(fd, buffer, BUFFER_SIZE);
-		if (count <= 0)
+		if (count == -1)
+		{
+			free(src);
+			return (NULL);
+		}
+		if (count == 0)
 			break ;
 		buffer[count] = '\0';
 		if (!src)
@@ -44,7 +49,7 @@ char	*fill_line(int fd, char *src, char *buffer)
 	return (src);
 }
 
-char	*check_loop(char **src, int i)
+char	*store_line(char **src, int i)
 {
 	char	*left;
 	char	*line;
@@ -69,7 +74,7 @@ char	*check_loop(char **src, int i)
 	return (line);
 }
 
-char	*left_line(char **src)
+char	*create_line(char **src)
 {
 	char	*line;
 	int		i;
@@ -81,7 +86,7 @@ char	*left_line(char **src)
 		i++;
 	if ((*src)[i] == '\n' )
 	{
-		line = check_loop(src, i);
+		line = store_line(src, i);
 		return (line);
 	}
 	line = ft_strdup(*src);
@@ -95,21 +100,24 @@ char	*get_next_line(int fd)
 	char		*buf;
 	char		*line;
 
-	if (fd == -1 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd == -1 || BUFFER_SIZE <= 0)
 	{
 		ft_free(&src);
 		return (NULL);
 	}
 	buf = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buf)
+	{
+		ft_free(&src);
 		return (NULL);
-	src = fill_line(fd, src, buf);
+	}
+	src = read_file(fd, src, buf);
 	free(buf);
 	if (!src || src[0] == '\0')
 	{
 		ft_free(&src);
 		return (NULL);
 	}
-	line = left_line(&src);
+	line = create_line(&src);
 	return (line);
 }

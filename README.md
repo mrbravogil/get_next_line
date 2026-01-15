@@ -116,10 +116,10 @@ Used when the pointer:
 
 ### **Core Functions**
 
-**fill_line**
+**read_file**
 Reads from a file descriptor into a buffer and appends it to the persistent string until reading stops.
 
-**left_line**
+**create_line**
 Extracts a single line from the stored string and updates the remaining content.
 Uses a double pointer to ensure changes persist.
 
